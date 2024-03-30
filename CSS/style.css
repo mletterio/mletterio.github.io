@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'brasley';
+    font-weight: 400;
+    font-style: normal;
+    src: url("../assets/fonts/brasley/Brasley-Regular.woff2") format('woff2');
+}
+
+body {
+    background: #efefef;
+    font-family: 'brasley';
+    font-size: 16px;
+    padding: 50px;
+}
+
+p {
+    font-family: 'brasley';
+}
+
+h2 {
+    font-family: 'brasley';
+}

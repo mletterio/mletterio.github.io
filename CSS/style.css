@@ -1,3 +1,5 @@
+
+/* FONT IMPORT */
 @font-face {
     font-family: 'brasley';
     font-weight: 400;
@@ -5,15 +7,27 @@
     src: url("../assets/fonts/brasley/Brasley-Regular.woff2") format('woff2');
 }
 
-body {
-    background: #efefef;
+@font-face {
     font-family: 'brasley';
-    font-size: 16px;
-    padding: 50px;
+    font-weight: 700;
+    font-style: bold;
+    src: url("../assets/fonts/brasley/Brasley-Bold.woff2") format('woff2');
 }
 
-p {
+/* FONT IMPORT */
+
+body {
+    background: #D7D2CB;
     font-family: 'brasley';
+    font-size: 16px;
+    padding: 30px;
+}
+
+h1 {
+    font-family: 'brasley';
+    font-style: bold;
+    font-size: 50px;
+    padding: 5px;
 }
 
 h2 {
@@ -21,50 +35,59 @@ h2 {
 }
 
 
-/* Style the header with a grey background and some padding */
-.header {
-    overflow: hidden;
-    background-color: #f1f1f1;
-    padding: 20px 10px;
+p {
+    font-family: 'brasley';
+}
+
+.outer-container{
+      display: flex;  
+      flex-flow: column wrap;
   }
-  
-  /* Style the header links */
-  .header a {
-    float: left;
+
+.portfolio-item {
+    background-color: #D7D2CB; /* Blue color */
     color: black;
+    padding: 12px; /* Add some padding for spacing */
+}
+
+.primary-header {
+    background-color: #0400f5; /* Blue color */
+    color: #D7D2CB;
+    border-radius: 10px; /* Rounded corners */
+    padding: 12px; /* Add some padding for spacing */
+}
+
+.primary-header a {
+    float: left;
+    color: #D7D2CB;
     text-align: center;
     padding: 12px;
     text-decoration: none;
+    transition: 50ms ease-out;/* Smooth color transition on hover */
     font-size: 18px;
     line-height: 25px;
-    border-radius: 4px;
-  }
-  
-  /* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
-  .header a.logo {
-    font-size: 25px;
+    border-radius: 10px;
+}
+
+.primary-header a.name {
+    font-size: 50px;
     font-weight: bold;
-  }
-  
-  /* Change the background color on mouse-over */
-  .header a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-  
-  /* Style the active/current link*/
-  .header a.active {
-    background-color: dodgerblue;
-    color: white;
-  }
-  
-  /* Float the link section to the right */
-  .header-right {
+    padding: 25px;
+}
+
+.primary-header a:hover {
+    background-color: #D7D2CB;
+    color: #0400f5;
+}
+
+/* Float the link section to the right */
+.primary-header-links {
+    color: #D7D2CB;
     float: right;
-  }
+}
   
-  /* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
-  @media screen and (max-width: 500px) {
+/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
+@media screen and (max-width: 500px) {
     .header a {
       float: none;
       display: block;
@@ -73,4 +96,4 @@ h2 {
     .header-right {
       float: none;
     }
-  }
+}

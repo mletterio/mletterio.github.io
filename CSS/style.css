@@ -75,18 +75,16 @@ p {
     padding: 25px;
 }
 
-.primary-header a:hover {
+.primary-header a:hover a:active{
     background-color: #D7D2CB;
     color: #0400f5;
 }
 
-/* Float the link section to the right */
 .primary-header-links {
     color: #D7D2CB;
     float: right;
 }
   
-/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
 @media screen and (max-width: 570px) {
     .primary-header a {
       float: none;

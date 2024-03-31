@@ -137,6 +137,7 @@ MARQUEE TEXT
     font-weight: 700;
     white-space: nowrap;
     font-family: 'audela';
+    font-style: italic;
 }
 
 @keyframes scroll {

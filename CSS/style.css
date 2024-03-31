@@ -16,7 +16,7 @@
 @font-face {
     font-family: 'audela';
     font-weight: 700;
-    font-style: italic;
+    font-style: normal;
     src: url("../assets/fonts/audela/Audela-Trial-BlackItalic.woff2") format('woff2');
 }
 

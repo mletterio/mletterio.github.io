@@ -92,7 +92,10 @@ p {
       float: none;
       display: block;
       text-align: left;
-      line-height: 10px;
+      padding: 8px;
+    }
+    .primary-header a.name{
+        line-height: 50px;
     }
     .primary-header-right {
       float: none;

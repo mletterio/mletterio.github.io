@@ -75,7 +75,7 @@ p {
     padding: 25px;
 }
 
-.primary-header a:hover a:active{
+.primary-header a:hover, a:active{
     background-color: #D7D2CB;
     color: #0400f5;
 }

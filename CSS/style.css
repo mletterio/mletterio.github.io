@@ -1,4 +1,4 @@
-/* FONT IMPORT */
+/* FONTS WAHOOO!!! */
 @font-face {
     font-family: 'brasley';
     font-weight: 400;
@@ -17,23 +17,17 @@
     font-family: 'audela';
     font-weight: 700;
     font-style: normal;
-    src: url("../assets/fonts/audela/Audela-Trial-BlackItalic.woff2") format('woff2');
+    src: url("../assets/fonts/audela/Audela-Trial-RegularItalic.woff2") format('woff2');
 }
 
-
-
 body {
-    background: #D7D2CB;
     font-family: 'brasley';
-    font-size: 16px;
-    padding: 30px;
+    background-color: #D7D2CB;
+    padding: 25px;
 }
 
 h1 {
     font-family: 'brasley';
-    font-style: bold;
-    font-size: 50px;
-    padding: 5px;
 }
 
 h2 {
@@ -45,61 +39,59 @@ p {
     font-family: 'brasley';
 }
 
+
+/*
+~~~~~~~~~~~~~~~~~~
+MISC CLASSES
+~~~~~~~~~~~~~~~~~~
+*/
+
 .outer-container {
     display: flex;
     flex-flow: column wrap;
 }
 
 .portfolio-item {
-    background-color: #D7D2CB;
-    /* Blue color */
-    color: black;
+    background-color: #1a1a1a;
     padding: 12px;
-    /* Add some padding for spacing */
 }
 
+/*
+~~~~~~~~~~~~~~~~~~
+HEADER TEXT
+~~~~~~~~~~~~~~~~~~
+*/
 .primary-header {
     background-color: #0400f5;
-    /* Blue color */
     color: #D7D2CB;
-    border-radius: 10px;
-    /* Rounded corners */
-    padding: 12px;
+    border-radius: 15px;
+    padding: 15px;
     margin-bottom: 150px;
-
-    /* Add some padding for spacing */
 }
 
 .primary-header a {
     float: left;
     color: #D7D2CB;
-    text-align: center;
-    padding: 15px;
     text-decoration: none;
-    transition: 100ms ease-out;
-    /* Smooth color transition on hover */
-    font-size: 20px;
-    line-height: 25px;
     border-radius: 10px;
+    padding: 15px;
 }
 
 .primary-header a.name {
-    font-size: 50px;
+    font-size: 70px;
     font-weight: bold;
-    padding: 25px;
 }
 
 .primary-header a:hover,
 a:active {
-    background-color: #ffff09;
-    color: black;
-    font-style: bold;
+    background-color: #D7D2CB;
+    color: #1a1a1a;
 }
 
 .primary-header-links {
-    color: #D7D2CB;
     float: right;
-    padding: 5px;
+    color: #D7D2CB;
+    font-size: 35px;
 }
 
 /*
@@ -113,12 +105,19 @@ MARQUEE TEXT
     user-select: none;
     gap: 2rem;
     width: 100vw;
-
     position: relative;
     left: 50%;
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
+    color: #1a1a1a;
+}
+
+.marquee:active {
+
+	color: #D7D2CB;
+    background-color: #1a1a1a;
+    transition: step-end;
 }
 
 .marquee__group {
@@ -126,13 +125,12 @@ MARQUEE TEXT
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 4rem;
+    gap: 2rem;
     min-width: 100%;
-    animation: scroll 45s linear infinite reverse;
+    animation: scroll 50s linear infinite reverse;
 }
 
 .marquee__group span {
-    color: black;
     font-size: 100px;
     font-weight: 700;
     white-space: nowrap;
@@ -165,7 +163,7 @@ MOBILE
     }
 
     .primary-header a.name {
-        line-height: 50px;
+        line-height: 70px;
     }
 
     .primary-header-right {
@@ -173,6 +171,6 @@ MOBILE
     }
 
     .marquee__group span {
-        font-size: 20vw;
+        font-size: 15vw;
     }
 }

@@ -92,7 +92,7 @@ p {
       float: none;
       display: block;
       text-align: left;
-      padding: 30px;
+      line-height: 10px;
     }
     .primary-header-right {
       float: none;

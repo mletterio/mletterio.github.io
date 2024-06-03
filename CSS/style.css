@@ -1,77 +1,84 @@
-/* FONTS WAHOOO!!! */
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Audela:wght@700&display=swap');
+
+/* Font Faces */
 @font-face {
-    font-family: 'brasley';
+    font-family: 'Open Sans';
     font-weight: 400;
     font-style: normal;
-    src: url("../assets/fonts/brasley/Brasley-Medium.woff2") format('woff2');
+    src: url('https://fonts.gstatic.com/s/opensans/v20/mem8YaGs126MiZpBA-UFVZ0bf8pkAg.woff2') format('woff2');
 }
 
 @font-face {
-    font-family: 'brasley';
+    font-family: 'Open Sans';
     font-weight: 700;
     font-style: bold;
-    src: url("../assets/fonts/brasley/Brasley-Bold.woff2") format('woff2');
+    src: url('https://fonts.gstatic.com/s/opensans/v20/mem5YaGs126MiZpBA-UN7rgOUuhpKKSTjw.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'audela';
     font-weight: 700;
     font-style: normal;
-    src: url("../assets/fonts/audela/Audela-Trial-RegularItalic.woff2") format('woff2');
+    src: url("../assets/fonts/audela/Audela-Trial-Semibold.woff2") format('woff2');
 }
 
+/* Body Styles */
 body {
-    font-family: 'brasley';
-    background-color: #D7D2CB;
-    padding: 25px;
+    font-family: 'Open Sans', sans-serif;
 }
 
-h1 {
-    font-family: 'brasley';
+/* Header Styles */
+h1, .primary-header {
+    font-family: 'audela', sans-serif;
 }
 
-h2 {
-    font-family: 'brasley';
+/* Secondary Header Styles */
+h2, .secondary-header {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700; /* This will make the font bold */
+    font-size: 24px; /* Adjust size as needed */
+}
+
+/* Bold Font Styles */
+.bold-text {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700; /* This will make the font bold */
 }
 
 
-p {
-    font-family: 'brasley';
-}
-
-
-/*
-~~~~~~~~~~~~~~~~~~
-MISC CLASSES
-~~~~~~~~~~~~~~~~~~
-*/
-
+/* Misc Classes */
 .outer-container {
     display: flex;
     flex-flow: column wrap;
 }
 
 .portfolio-item {
-    background-color: #1a1a1a;
-    padding: 12px;
+    color: #262626;
+    background-color: #f2f2f2;
+    margin: 30px;
+    padding: 20px;
+    border-radius: 20px;
+    text-decoration: none;
 }
 
-/*
-~~~~~~~~~~~~~~~~~~
-HEADER TEXT
-~~~~~~~~~~~~~~~~~~
-*/
+.portfolio-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+}
+
+
 .primary-header {
-    background-color: #0400f5;
-    color: #D7D2CB;
-    border-radius: 15px;
+    color: #000000;
     padding: 15px;
-    margin-bottom: 150px;
+    margin-bottom: 50px;
 }
 
 .primary-header a {
     float: left;
-    color: #D7D2CB;
+    color: #000000;
     text-decoration: none;
     border-radius: 10px;
     padding: 15px;
@@ -82,11 +89,6 @@ HEADER TEXT
     font-weight: bold;
 }
 
-.primary-header a:hover,
-a:active {
-    background-color: #D7D2CB;
-    color: #1a1a1a;
-}
 
 .primary-header-links {
     float: right;
@@ -94,66 +96,7 @@ a:active {
     font-size: 35px;
 }
 
-/*
-~~~~~~~~~~~~~~~~~~
-MARQUEE TEXT
-~~~~~~~~~~~~~~~~~~
-*/
-.marquee {
-    display: flex;
-    overflow: hidden;
-    user-select: none;
-    gap: 2rem;
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    color: #1a1a1a;
-}
-
-.marquee:hover {
-
-	color: #D7D2CB;
-    background-color: #1a1a1a;
-    transition: step-end;
-}
-
-.marquee__group {
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    min-width: 100%;
-    animation: scroll 45s linear infinite reverse;
-}
-
-.marquee__group span {
-    padding: 5px;
-    font-size: 100px;
-    font-weight: 700;
-    white-space: nowrap;
-    font-family: 'audela';
-    font-style: italic;
-}
-
-@keyframes scroll {
-    from {
-        transform: translateX(0);
-    }
-
-    to {
-        transform: translateX(calc(-100% - 2rem));
-    }
-}
-
-/*
-~~~~~~~~~~~~~~~~~~
-MOBILE
-~~~~~~~~~~~~~~~~~~
-*/
-
+/* Mobile Styles */
 @media screen and (max-width: 570px) {
     .primary-header a {
         float: none;
@@ -168,9 +111,5 @@ MOBILE
 
     .primary-header-right {
         float: none;
-    }
-
-    .marquee__group span {
-        font-size: 15vw;
     }
 }

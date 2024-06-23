@@ -132,7 +132,7 @@ hr {
 }
 
 /* Mobile Styles */
-@media screen and (max-width: 570px) {
+@media screen and (max-width: 950px) {
     .primary-header a {
         float: none;
         display: block;

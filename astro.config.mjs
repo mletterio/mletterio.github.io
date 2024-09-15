@@ -6,5 +6,6 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://mletterio.github.io',
-	integrations: [mdx(), sitemap()],
+	base: '/',
+	integrations: [mdx(), sitemap()]
 });

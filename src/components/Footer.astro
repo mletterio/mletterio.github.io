@@ -3,8 +3,14 @@ const today = new Date();
 ---
 
 <footer>
-	&copy; {today.getFullYear()} Michael Letterio. All rights reserved.<br>Boston, MA.
+	&copy; <span id="year">{new Date().getFullYear()}</span> Michael Letterio. All rights reserved.<br>Boston, MA.
 </footer>
+<script>
+	const yearElem = document.getElementById('year');
+	if (yearElem) {
+		yearElem.textContent = new Date().getFullYear().toString();
+	}
+</script>
 <style>
 	footer {
 		padding: 2em 1em 6em 1em;

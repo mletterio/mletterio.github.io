@@ -1,23 +1,34 @@
 ---
+import { SECTIONS } from '../consts';
+
 type Props = {
 	id: string;
-	label: string;
 };
 
-const { id, label } = Astro.props;
+const { id } = Astro.props;
+const index = SECTIONS.findIndex((section) => section.id === id);
+if (index === -1) throw new Error(`Section "${id}" is missing from SECTIONS in src/consts.ts`);
+const { label, subtitle } = SECTIONS[index];
 const labelId = `${id}-label`;
 ---
 
 <section class="section container" id={id} aria-labelledby={labelId}>
-	<h2 class="section__label" id={labelId} data-reveal>{label}</h2>
-	<div class="section__body" data-reveal>
+	<h2 class="section__head" id={labelId} data-reveal>
+		<span class="section__title">
+			<span class="disc" aria-hidden="true"><span>{index + 1}</span></span>
+			<span class="section__label">{label}</span>
+		</span>
+		{subtitle && <span class="section__subtitle serif">{subtitle}</span>}
+	</h2>
+	<div class="section__body">
 		<slot />
 	</div>
 </section>
 
 <style>
-	/* Label in the first quarter, content from column 4 — the asymmetric
-	   split gives the text a clear left edge without centering it. */
+	/* Running head in the first quarter, content from column 4 — the
+	   asymmetric split gives the text a clear left edge without centering
+	   it. Slotted content marks its own [data-reveal] targets. */
 	.section {
 		display: grid;
 		grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -26,38 +37,81 @@ const labelId = `${id}-label`;
 		padding-block: var(--space-xl);
 	}
 
-	.section__label {
+	/* Disc + bold label on one line, the serif
+	   subtitle below it, flush left — both at the same size so neither face
+	   dominates (the serif's x-height is matched to ALT's via .serif). */
+	.section__head {
 		grid-column: 1 / 4;
 		margin: 0;
-		font-size: var(--type-small);
+		font-size: var(--type-head);
 		font-weight: var(--font-weight-regular);
-		line-height: 1.4;
-		color: var(--gray-mid);
+		line-height: var(--lh-head);
+	}
+
+	/* Baseline-aligned so the label (not the disc) sets the row's baseline,
+	   which lines up with the first line of the section body. */
+	.section__title {
+		display: flex;
+		align-items: baseline;
+		gap: 0.4em;
+	}
+
+	/* Centred on the label's line box; with ALT Systema's metrics that
+	   centre falls on the capitals' midpoint (0.36em vs 0.35em above the
+	   baseline). Sized in em so it scales with the running head. */
+	.disc {
+		align-self: center;
+		flex: none;
+		display: inline-grid;
+		place-items: center;
+		width: 0.95em;
+		height: 0.95em;
+		border-radius: 50%;
+		background: rgb(var(--black));
+		color: var(--page-bg);
+		font-weight: var(--font-weight-bold);
+		line-height: 1;
+	}
+
+	/* The digit, scaled down inside the disc's em box. */
+	.disc > span {
+		font-size: 0.52em;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.section__label {
+		font-weight: var(--font-weight-bold);
+	}
+
+	.section__subtitle {
+		display: block;
 	}
 
 	.section__body {
 		grid-column: 4 / -1;
+		min-width: 0;
+	}
+
+	/* Prose sections (e.g. the bio) read as a lede. */
+	.section__body > :global(p) {
 		max-width: 38ch;
+		margin: 0;
 		font-size: var(--type-lede);
-		line-height: 1.35;
+		line-height: var(--lh-lede);
 		text-wrap: pretty;
 	}
 
-	.section__body :global(p) {
-		margin: 0;
-	}
-
-	.section__body :global(p + p) {
+	.section__body > :global(p + p) {
 		margin-top: 1em;
 	}
 
 	@media (max-width: 640px) {
 		.section {
 			grid-template-columns: minmax(0, 1fr);
-			row-gap: var(--space-xs);
+			row-gap: var(--space-sm);
 		}
 
-		.section__label,
+		.section__head,
 		.section__body {
 			grid-column: 1;
 		}

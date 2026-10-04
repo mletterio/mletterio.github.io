@@ -41,8 +41,8 @@ import { SITE_TITLE, SOCIAL_LINKS } from '../consts';
 		justify-content: space-between;
 		align-items: center;
 		gap: var(--space-xs);
-		font-size: var(--type-small);
-		line-height: 1.4;
+		font-size: var(--type-meta);
+		line-height: var(--lh-meta);
 	}
 
 	.masthead__place {
@@ -61,19 +61,6 @@ import { SITE_TITLE, SOCIAL_LINKS } from '../consts';
 		text-decoration: none;
 	}
 
-	/* ALT Systema has no ↗ glyph; rotating its → keeps the arrow in the
-	   brand face instead of falling back to a system font. */
-	.arrow {
-		display: inline-block;
-		margin-left: 0.3em;
-		transform: rotate(-45deg);
-		transition: transform 200ms ease;
-	}
-
-	.masthead__links a:hover .arrow {
-		transform: rotate(-45deg) translateX(2px);
-	}
-
 	/* Sized so the full name spans the content width on one line:
 	   font-size = container width ÷ (name width in em). --name-fit comes
 	   from tokens.css; phones override it below to fit "LETTERIO" so the
@@ -84,7 +71,7 @@ import { SITE_TITLE, SOCIAL_LINKS } from '../consts';
 		font-size: 10vw;
 		font-size: calc(100cqi / var(--name-fit));
 		font-weight: var(--font-weight-bold);
-		line-height: 0.9;
+		line-height: var(--lh-display);
 		letter-spacing: -0.03em;
 		text-transform: uppercase;
 		white-space: nowrap;
@@ -93,7 +80,7 @@ import { SITE_TITLE, SOCIAL_LINKS } from '../consts';
 
 	.rule {
 		display: block;
-		height: 1px;
+		height: var(--rule-weight);
 		margin-top: var(--space-sm);
 		background: rgb(var(--black));
 		transform-origin: left center;

@@ -17,6 +17,16 @@
 	font-display: swap;
 }
 
+/* Serif accent (SIL Open Font License — see /fonts/STIXTwoText-OFL.txt).
+   Latin subset, regular weight only: it sets titles and subtitles. */
+@font-face {
+	font-family: 'STIX Two Text';
+	src: url('/fonts/STIXTwoText-Regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
 *,
 *::before,
 *::after {
@@ -31,7 +41,7 @@ body {
 	margin: 0;
 	font-family: var(--font-family-sans);
 	font-size: var(--type-body);
-	line-height: 1.6;
+	line-height: var(--lh-body);
 	color: rgb(var(--black));
 	background: var(--page-bg);
 	-webkit-font-smoothing: antialiased;
@@ -42,6 +52,19 @@ body {
    overflow here just prevents a flash before it initializes. */
 #smooth-wrapper {
 	overflow: hidden;
+}
+
+/* While ScrollSmoother runs (mouse/trackpad only), keep the translated
+   content on its own GPU layer — it doesn't set will-change on it itself,
+   and without one every scroll frame repaints the page (stutter on fast
+   flicks). Also drop the rubber-band bounce, which fights the fixed
+   wrapper at the top and bottom of the page. */
+html.has-smoother {
+	overscroll-behavior: none;
+}
+
+html.has-smoother #smooth-content {
+	will-change: transform;
 }
 
 /* Shared page rail — every block lines up on the same edges. */
@@ -63,6 +86,28 @@ a {
 
 a:hover {
 	text-decoration-color: currentColor;
+}
+
+/* Outbound-link arrow. ALT Systema has no ↗ glyph; rotating its → keeps
+   the arrow in the brand face instead of falling back to a system font. */
+.arrow {
+	display: inline-block;
+	margin-left: 0.3em;
+	transform: rotate(-45deg);
+	transition: transform 200ms ease;
+}
+
+a:hover .arrow {
+	transform: rotate(-45deg) translateX(2px);
+}
+
+/* Serif accent — titles and subtitles only, never body text or the name.
+   font-size-adjust matches its x-height to ALT Systema's (0.51) so the two
+   read at the same size on a shared line. */
+.serif {
+	font-family: var(--font-family-serif);
+	font-weight: var(--font-weight-regular);
+	font-size-adjust: 0.51;
 }
 
 :focus-visible {

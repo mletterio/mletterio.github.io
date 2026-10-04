@@ -17,13 +17,20 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				<Header />
 
 				<main>
-					<Section id="about" label="About">
+					{/* Sections are numbered and labelled from SECTIONS in src/consts.ts. */}
+					<Section id="about">
 						{/* TODO(bio): replace with your own 2–3 sentences (~40–60 words). */}
-						<p>
-							Your bio goes here — two or three sentences on who you are, what you
-							work on, and what you care about. Keep it short enough to read in one
-							glance.
+						<p data-reveal>
+							Hey there, I'm Michael: skier, traveler, photographer, and weekend sailor.
+							A curious, detail-oriented engineer with a knack for creative problem solving.
+							I build machine vision systems, currently pursuing an
+							MS in Data Science at Boston University.
 						</p>
+					</Section>
+
+					<Section id="work">
+						{/* When ready, swap this for <IndexList rows={WORK} /> (rows live in src/consts.ts). */}
+						<p data-reveal>Coming soon.</p>
 					</Section>
 				</main>
 

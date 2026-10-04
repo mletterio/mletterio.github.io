@@ -21,6 +21,10 @@ const smoother =
 			})
 		: null;
 
+// Styles that only make sense while the smoother is translating the page
+// (GPU layer, no rubber-band overscroll) hang off this class — see global.css.
+if (smoother) document.documentElement.classList.add('has-smoother');
+
 document.querySelectorAll<HTMLAnchorElement>('a[data-anchor]').forEach((a) => {
 	a.addEventListener('click', (e) => {
 		const href = a.getAttribute('href');

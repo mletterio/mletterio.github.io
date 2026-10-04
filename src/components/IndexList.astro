@@ -1,0 +1,95 @@
+---
+import type { IndexRow } from '../consts';
+
+type Props = {
+	rows: IndexRow[];
+};
+
+const { rows } = Astro.props;
+---
+
+<ol class="index">
+	{rows.map(({ title, description, year, href }, i) => {
+		const Row = href ? 'a' : 'div';
+		const linkProps = href ? { href, target: '_blank', rel: 'noopener noreferrer' } : {};
+		return (
+			<li data-reveal>
+				<Row class="index__row" {...linkProps}>
+					<span class="index__n">{String(i + 1).padStart(2, '0')}</span>
+					<span class="index__title serif">{title}</span>
+					<span class="index__desc">{description}</span>
+					<span class="index__year">
+						{year}
+						{href && <span class="arrow" aria-hidden="true">→</span>}
+					</span>
+				</Row>
+			</li>
+		);
+	})}
+</ol>
+
+<style>
+	/* Numbered index in the manner of a book's contents page: hairline
+	   rules between rows, number / title / description / year columns. */
+	.index {
+		/* Rows switch layout on the list's own width, not the viewport's —
+		   in the section's 9-column body it's narrow well above phone size. */
+		container-type: inline-size;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		box-shadow: inset 0 calc(-1 * var(--rule-weight)) rgb(var(--black));
+	}
+
+	.index__row {
+		display: grid;
+		grid-template-columns: 2.5rem minmax(0, 14rem) minmax(0, 1fr) auto;
+		column-gap: var(--space-sm);
+		align-items: baseline;
+		min-height: 44px;
+		padding-block: 0.85rem;
+		box-shadow: inset 0 var(--rule-weight) rgb(var(--black));
+		font-size: var(--type-meta);
+		line-height: var(--lh-meta);
+		text-decoration: none;
+	}
+
+	.index__n,
+	.index__year {
+		font-variant-numeric: tabular-nums;
+	}
+
+	.index__title {
+		font-size: var(--type-head);
+		line-height: var(--lh-head);
+	}
+
+	.index__year {
+		text-align: right;
+		white-space: nowrap;
+	}
+
+	a.index__row:hover .index__title {
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 0.15em;
+	}
+
+	/* Narrow: number / title / year on one line, description below. */
+	@container (max-width: 40rem) {
+		.index__row {
+			grid-template-columns: 2rem minmax(0, 1fr) auto;
+		}
+
+		.index__year {
+			grid-column: 3;
+			grid-row: 1;
+		}
+
+		.index__desc {
+			grid-column: 2 / -1;
+			grid-row: 2;
+			margin-top: 0.25rem;
+		}
+	}
+</style>

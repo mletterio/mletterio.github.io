@@ -1,0 +1,38 @@
+/* mletterio.github.io — design tokens.
+   Single source of truth for color, type, spacing, and layout. */
+
+:root {
+	/* ── Color ──────────────────────────────────────────────────────── */
+	--black:    15, 18, 25;   /* rgb triplet — wrap with rgb() */
+	--gray-mid: #6b6b6b;      /* secondary text; 5.3:1 on white (AA) */
+	--page-bg:  #ffffff;
+
+	/* ── Typography ─────────────────────────────────────────────────── */
+	--font-family-sans: 'ALT Systema', sans-serif;
+
+	--font-weight-regular: 400;
+	--font-weight-bold:    700;
+
+	--type-small: 0.875rem;
+	--type-body:  clamp(1rem,    1.2vw, 1.125rem);
+	--type-lede:  clamp(1.25rem, 2.2vw, 1.875rem);
+
+	/* Ink width ÷ font-size of "MICHAEL LETTERIO" in Bold at -0.03em
+	   tracking (measured 9.073, plus a hair of slack). The masthead sizes
+	   the name as 100cqi / --name-fit so it spans the content width.
+	   Phones override this in Header.astro to fit "LETTERIO" instead. */
+	--name-fit: 9.09;
+
+	/* ── Spacing ────────────────────────────────────────────────────── */
+	--space-xs: 1rem;
+	--space-sm: 1.5rem;
+	--space-md: 2.5rem;
+	--space-xl: clamp(5rem, 10vw, 9rem);
+
+	/* ── Layout ─────────────────────────────────────────────────────── */
+	--layout-max: 1400px;
+	--layout-px:  clamp(1.25rem, 5vw, 5rem);
+
+	/* ── Breakpoint (documentation only; @media uses the literal) ───── */
+	/* phone: max-width 640px */
+}

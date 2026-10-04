@@ -1,0 +1,65 @@
+---
+type Props = {
+	id: string;
+	label: string;
+};
+
+const { id, label } = Astro.props;
+const labelId = `${id}-label`;
+---
+
+<section class="section container" id={id} aria-labelledby={labelId}>
+	<h2 class="section__label" id={labelId} data-reveal>{label}</h2>
+	<div class="section__body" data-reveal>
+		<slot />
+	</div>
+</section>
+
+<style>
+	/* Label in the first quarter, content from column 4 — the asymmetric
+	   split gives the text a clear left edge without centering it. */
+	.section {
+		display: grid;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		column-gap: var(--space-sm);
+		align-items: baseline;
+		padding-block: var(--space-xl);
+	}
+
+	.section__label {
+		grid-column: 1 / 4;
+		margin: 0;
+		font-size: var(--type-small);
+		font-weight: var(--font-weight-regular);
+		line-height: 1.4;
+		color: var(--gray-mid);
+	}
+
+	.section__body {
+		grid-column: 4 / -1;
+		max-width: 38ch;
+		font-size: var(--type-lede);
+		line-height: 1.35;
+		text-wrap: pretty;
+	}
+
+	.section__body :global(p) {
+		margin: 0;
+	}
+
+	.section__body :global(p + p) {
+		margin-top: 1em;
+	}
+
+	@media (max-width: 640px) {
+		.section {
+			grid-template-columns: minmax(0, 1fr);
+			row-gap: var(--space-xs);
+		}
+
+		.section__label,
+		.section__body {
+			grid-column: 1;
+		}
+	}
+</style>

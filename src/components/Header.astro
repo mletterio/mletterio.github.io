@@ -1,86 +1,110 @@
 ---
-import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../consts';
+import { SITE_TITLE, SOCIAL_LINKS } from '../consts';
 ---
 
-<header>
-	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
-		<div class="internal-links">
-			<HeaderLink href="https://www.linkedin.com/in/michael-letterio">LinkedIn →</HeaderLink>
-			<HeaderLink href="https://github.com/mletterio">GitHub →</HeaderLink>
-		</div>
-	</nav>
+<header class="masthead container" id="top">
+	<div class="masthead__bar" data-intro="bar">
+		<p class="masthead__place">Boston, MA</p>
+		<nav class="masthead__links" aria-label="Elsewhere">
+			{SOCIAL_LINKS.map(({ label, href }) => (
+				<a href={href} target="_blank" rel="noopener noreferrer">
+					{label}<span class="arrow" aria-hidden="true">→</span>
+				</a>
+			))}
+		</nav>
+	</div>
+
+	<div>
+		<h1 class="name" data-intro="name">{SITE_TITLE}</h1>
+		<span class="rule" aria-hidden="true" data-intro="rule"></span>
+	</div>
 </header>
+
 <style>
-	header {
-		margin: 2.1em;
-		background: white;
-	}
-	h2 {
-		font-weight: var(--font-weight-semibold);
-	}
-
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
-	}
-
-	nav {
+	/* The masthead is the whole first screen: small info bar on top, the
+	   name sitting on a rule at the bottom. It scrolls with the page like
+	   any other block — nothing here is fixed or scroll-driven. */
+	.masthead {
+		/* Lets .name size itself against this box's content width (cqi). */
+		container-type: inline-size;
 		display: flex;
-		flex-direction: row;
-		align-items: baseline;
-		justify-content: left;
-		line-height: 1.25em;
-		gap: 1.5em;
-		padding: 0.25em;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: var(--space-xl);
+		min-height: 100vh;
+		min-height: 100svh;
+		padding-block: var(--space-xs) var(--space-md);
 	}
 
-	.internal-links {
+	.masthead__bar {
 		display: flex;
-		gap: 0.85em;
-		font-size: 1.4em;
-		border-top: 2px solid var(--gray-dark);
-		padding-top: 0.4em;
-		flex-grow: 1;
-		justify-content: flex-start;
-		box-sizing: border-box;
+		justify-content: space-between;
+		align-items: center;
+		gap: var(--space-xs);
+		font-size: var(--type-small);
+		line-height: 1.4;
 	}
 
-	nav a {
-		color: var(--black);
+	.masthead__place {
+		margin: 0;
+	}
+
+	.masthead__links {
+		display: flex;
+		gap: var(--space-sm);
+	}
+
+	.masthead__links a {
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
 		text-decoration: none;
 	}
 
-	nav a.active {
-		text-decoration: none;
+	/* ALT Systema has no ↗ glyph; rotating its → keeps the arrow in the
+	   brand face instead of falling back to a system font. */
+	.arrow {
+		display: inline-block;
+		margin-left: 0.3em;
+		transform: rotate(-45deg);
+		transition: transform 200ms ease;
 	}
 
-	/* Mobile adjustments */
-	@media (max-width: 870px) {
-		
-		header {
-			margin: 0.75em
-		}
+	.masthead__links a:hover .arrow {
+		transform: rotate(-45deg) translateX(2px);
+	}
 
-		h2 {
-			font-size: 2.2em;
-		}
+	/* Sized so the full name spans the content width on one line:
+	   font-size = container width ÷ (name width in em). --name-fit comes
+	   from tokens.css; phones override it below to fit "LETTERIO" so the
+	   name breaks onto two lines at the space. The negative margin cancels
+	   the M/L side bearing (0.084em) so the ink sits on the gutter. */
+	.name {
+		margin: 0 0 0 -0.084em;
+		font-size: 10vw;
+		font-size: calc(100cqi / var(--name-fit));
+		font-weight: var(--font-weight-bold);
+		line-height: 0.9;
+		letter-spacing: -0.03em;
+		text-transform: uppercase;
+		white-space: nowrap;
+		overflow-wrap: normal;
+	}
 
-		nav {
-			flex-direction: column;
-			align-items: flex-start;
-			gap: 0.25em;
-		}
+	.rule {
+		display: block;
+		height: 1px;
+		margin-top: var(--space-sm);
+		background: rgb(var(--black));
+		transform-origin: left center;
+	}
 
-		.internal-links {
-			flex-direction: row;
-			gap: 0.75em;
-			width: 100%;
-		}
-
-		nav a {
-			font-size: 1.0em;
+	@media (max-width: 640px) {
+		.name {
+			/* "LETTERIO" ink is 4.505em; the slack keeps its advance
+			   width inside the line box so it never overflows. */
+			--name-fit: 4.53;
+			white-space: normal;
 		}
 	}
 </style>

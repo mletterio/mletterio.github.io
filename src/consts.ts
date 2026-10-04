@@ -1,5 +1,9 @@
-// Place any global data in this file.
-// You can import this data from anywhere in your site by using the `import` keyword.
+// Site-wide data. Import from any component with `import { … } from '../consts'`.
 
-export const SITE_TITLE = 'MICHAEL LETTERIO';
-export const SITE_DESCRIPTION = 'Welcome to my website!';
+export const SITE_TITLE = 'Michael Letterio';
+export const SITE_DESCRIPTION = 'Photographer and software engineer in Boston.';
+
+export const SOCIAL_LINKS = [
+	{ label: 'LinkedIn', href: 'https://www.linkedin.com/in/michael-letterio' },
+	{ label: 'GitHub', href: 'https://github.com/mletterio' },
+];

@@ -1,24 +1,38 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
+import Section from '../components/Section.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
 <!doctype html>
 <html lang="en">
-    <head>
-        <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-    </head>
-    <body>
-        <Header />
-        <main>
-            <h1>Hello, welcome to my website!</h1>
-            <p>
-                Thanks for stopping by! This website is still under construction,
-                please check back later for updates.
-            </p>
-        </main>
-        <Footer />
-    </body>
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<div id="smooth-wrapper">
+			<div id="smooth-content">
+				<Header />
+
+				<main>
+					<Section id="about" label="About">
+						{/* TODO(bio): replace with your own 2–3 sentences (~40–60 words). */}
+						<p>
+							Your bio goes here — two or three sentences on who you are, what you
+							work on, and what you care about. Keep it short enough to read in one
+							glance.
+						</p>
+					</Section>
+				</main>
+
+				<Footer />
+			</div>
+		</div>
+
+		<script>
+			import '../scripts/animations.ts';
+		</script>
+	</body>
 </html>

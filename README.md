@@ -1,68 +1,47 @@
-# Astro Starter Kit: Blog
+# mletterio.github.io
+
+Personal site for Michael Letterio, built with [Astro](https://astro.build) and [GSAP](https://gsap.com).
+
+**Live site:** https://mletterio.github.io
+
+## Project structure
+
+```
+src/
+├── components/
+│   ├── BaseHead.astro   # <head>: meta tags, font preloads, motion opt-in
+│   ├── Header.astro     # First screen: location + links bar, full-width name
+│   ├── Section.astro    # Label + content grid (used for About)
+│   └── Footer.astro
+├── pages/
+│   └── index.astro      # The page — bio copy lives here
+├── scripts/
+│   └── animations.ts    # ScrollSmoother, intro fade, scroll reveals
+├── styles/
+│   ├── tokens.css       # Colors, type scale, spacing, layout
+│   └── global.css       # Font faces, resets, .container, link styles
+└── consts.ts            # Site title, description, social links
+```
+
+## Common edits
+
+- **Bio:** `src/pages/index.astro`, inside `<Section id="about">`.
+- **Links (LinkedIn, GitHub):** `SOCIAL_LINKS` in `src/consts.ts` — used by the header and footer.
+- **Name sizing:** the name fills the content width via `--name-fit` (name width ÷ font size). It's set in `tokens.css` for one line and overridden in `Header.astro` for the two-line phone layout. Adjust these if the name, font, or tracking changes.
+
+## Motion
+
+Animations are deliberately quiet: the name only fades in, a rule wipes under it, and the bio fades up on scroll. Nothing moves the name except the page scroll itself. ScrollSmoother runs on mouse/trackpad devices only; touch devices use native scroll. Everything is skipped when the visitor prefers reduced motion.
+
+## Local development
 
 ```sh
-npm create astro@latest -- --template blog
+npm install       # Install dependencies
+npm run dev       # Dev server at localhost:4321
+npm run build     # Production build to dist/
+npm run preview   # Preview the production build
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/blog)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/blog)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/blog/devcontainer.json)
+## Deploy
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![blog](https://github.com/withastro/astro/assets/2244813/ff10799f-a816-4703-b967-c78997e8323d)
-
-Features:
-
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-├── public/
-├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+Pushing to `main` deploys to GitHub Pages via `.github/workflows/deploy.yml`.

@@ -1,34 +1,58 @@
 ---
-const today = new Date();
+import { SITE_TITLE, SOCIAL_LINKS } from '../consts';
 ---
 
-<footer>
-	&copy; <span id="year">{new Date().getFullYear()}</span> Michael Letterio. All rights reserved.<br>Boston, MA.
+<footer class="footer container">
+	<div class="footer__row">
+		<p class="footer__copy">&copy; <span data-year>{new Date().getFullYear()}</span> {SITE_TITLE}</p>
+		<nav class="footer__links" aria-label="Footer">
+			{SOCIAL_LINKS.map(({ label, href }) => (
+				<a href={href} target="_blank" rel="noopener noreferrer">{label}</a>
+			))}
+			<a href="#top" data-anchor aria-label="Back to top">↑&nbsp;Top</a>
+		</nav>
+	</div>
 </footer>
+
 <script>
-	const yearElem = document.getElementById('year');
-	if (yearElem) {
-		yearElem.textContent = new Date().getFullYear().toString();
-	}
+	// Keep the year current between deploys.
+	const yearEl = document.querySelector<HTMLElement>('[data-year]');
+	if (yearEl) yearEl.textContent = new Date().getFullYear().toString();
 </script>
+
 <style>
-	footer {
-		padding: 2em 1em 6em 1em;
-		background: linear-gradient(var(--gray-gradient)) no-repeat;
-		color: rgb(var(--gray-dark));
-		text-align: center;
+	.footer {
+		padding-bottom: var(--space-xs);
 	}
-	.social-links {
+
+	.footer__row {
 		display: flex;
-		justify-content: center;
-		gap: 1em;
-		margin-top: 1em;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: center;
+		column-gap: var(--space-sm);
+		border-top: 1px solid rgb(var(--black));
+		font-size: var(--type-small);
+		line-height: 1.4;
 	}
-	.social-links a {
-		text-decoration: none;
-		color: rgb(var(--gray));
+
+	/* Padded to the links' 44px row height so the text keeps its distance
+	   from the rule when the row wraps on phones. (Not flex — that would
+	   collapse the spaces around the year span.) */
+	.footer__copy {
+		margin: 0;
+		padding-block: calc((44px - 1.4em) / 2);
+		color: var(--gray-mid);
 	}
-	.social-links a:hover {
-		color: rgb(var(--gray-dark));
+
+	.footer__links {
+		display: flex;
+		gap: var(--space-sm);
+	}
+
+	.footer__links a {
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
 	}
 </style>
